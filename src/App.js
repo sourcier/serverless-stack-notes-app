@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
@@ -10,6 +11,7 @@ import Routes from "./Routes";
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     onLoad();
@@ -33,6 +35,8 @@ function App() {
     await Auth.signOut();
 
     userHasAuthenticated(false);
+
+    history.push("/login");
   }
 
   return (
