@@ -1,5 +1,6 @@
 const config = {
   MAX_ATTACHMENT_SIZE: 5000000,
+  STRIPE_KEY: "pk_test_cA7dgir7RDXeSfI1ehdPDRxy",
   s3: {
     REGION: "eu-west-2",
     BUCKET: "53mecql-serverless-stack-notes",
