@@ -20,17 +20,17 @@ const prod = {
   STRIPE_KEY: "pk_test_cA7dgir7RDXeSfI1ehdPDRxy",
   s3: {
     REGION: "eu-west-2",
-    BUCKET: "YOUR_PROD_S3_UPLOADS_BUCKET_NAME"
+    BUCKET: "prod-serverless-stack-notes-infra-uploads4f6eb0fd-13jymuramxknr"
   },
   apiGateway: {
     REGION: "eu-west-2",
-    URL: "YOUR_PROD_API_GATEWAY_URL"
+    URL: "https://l021vi0ng6.execute-api.eu-west-2.amazonaws.com/prod"
   },
   cognito: {
     REGION: "eu-west-2",
-    USER_POOL_ID: "YOUR_PROD_COGNITO_USER_POOL_ID",
-    APP_CLIENT_ID: "YOUR_PROD_COGNITO_APP_CLIENT_ID",
-    IDENTITY_POOL_ID: "YOUR_PROD_IDENTITY_POOL_ID"
+    USER_POOL_ID: "eu-west-2_mYeWsTHWr",
+    APP_CLIENT_ID: "1qc297clumrmeu170a5d2q5bg6",
+    IDENTITY_POOL_ID: "eu-west-2:051214e1-daaf-4892-a09c-d6c02c9dbe05"
   }
 };
 
