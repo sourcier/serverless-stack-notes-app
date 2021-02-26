@@ -6,6 +6,7 @@ import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./Notes.css";
 import { onError } from "../libs/errorLib";
+import { s3Upload } from "../libs/awsLib";
 
 export default function Notes() {
   const file = useRef(null);
@@ -52,6 +53,12 @@ export default function Notes() {
     file.current = event.target.files[0];
   }
 
+  function saveNote(note) {
+    return API.put("notes", `/notes/${id}`, {
+      body: note
+    });
+  }
+
   async function handleSubmit(event) {
     let attachment;
 
@@ -59,13 +66,28 @@ export default function Notes() {
 
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
-        1000000} MB.`
+        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000
+        } MB.`
       );
       return;
     }
 
     setIsLoading(true);
+
+    try {
+      if (file.current) {
+        attachment = await s3Upload(file.current);
+      }
+
+      await saveNote({
+        content,
+        attachment: attachment || note.attachment
+      });
+      history.push("/");
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
+    }
   }
 
   async function handleDelete(event) {
